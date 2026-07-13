@@ -94,6 +94,9 @@ export * from "./features/turn-games/eightball/types.js";
 export * from "./features/turn-games/eightball/tools.js";
 export { eightBallEngine } from "./features/turn-games/eightball/engine.js";
 
+// Tactical (grid) combat for Game Mode (classic combat's alternative style)
+export * from "./features/tactical-combat/index.js";
+
 // Utils
 export * from "./utils/macro-engine.js";
 export * from "./utils/xml-wrapper.js";
