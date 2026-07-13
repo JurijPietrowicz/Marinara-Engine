@@ -876,6 +876,7 @@ function generatedPartyMemberToCombatant(
   const hp = Math.max(0, Math.min(maxHp, Number(member.hp) || maxHp));
   const level = combatLevelFromHp(maxHp, fallbackLevel);
   const element = member.attacks?.find((attack) => attack.element)?.element;
+  const combatClass = typeof member.class === "string" && member.class.trim() ? member.class.trim() : undefined;
   return {
     id: matchedAvatar?.id ?? `generated-party-${index}-${slugifyCombatantId(member.name)}`,
     name: member.name || `Ally ${index + 1}`,
@@ -892,6 +893,7 @@ function generatedPartyMemberToCombatant(
     statusEffects: combatStatusEffectsFromGenerated(member.statuses),
     skills: combatSkillsFromGeneratedAttacks(member.attacks, level),
     element,
+    combatClass,
   };
 }
 
@@ -916,6 +918,7 @@ function generatedEnemyToCombatant(enemy: CombatEnemy, index: number, fallbackLe
   const hp = Math.max(0, Math.min(maxHp, Number(enemy.hp) || maxHp));
   const level = combatLevelFromHp(maxHp, fallbackLevel);
   const element = enemy.attacks?.find((attack) => attack.element)?.element;
+  const combatClass = typeof enemy.class === "string" && enemy.class.trim() ? enemy.class.trim() : undefined;
   return {
     id: `generated-enemy-${index}-${slugifyCombatantId(enemy.name)}`,
     name: enemy.name || `Enemy ${index + 1}`,
@@ -930,6 +933,7 @@ function generatedEnemyToCombatant(enemy: CombatEnemy, index: number, fallbackLe
     statusEffects: combatStatusEffectsFromGenerated(enemy.statuses),
     skills: combatSkillsFromGeneratedAttacks(enemy.attacks, level),
     element,
+    combatClass,
   };
 }
 
